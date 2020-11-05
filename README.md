@@ -1,31 +1,33 @@
 # Entrega 5: Replicar casos 2-D para verificar
 * Cambio de condiciones de borde:
-Para cambiar las condiciones de borde se debe considerar que los lados se representan de la siguiente forma:
 
-Borde izquierdo: u_k [0 , :]
+  Para cambiar las condiciones de borde se debe considerar que los lados se representan de la siguiente forma:
 
-Borde derecho: u_k [-1 , :]
+  Borde izquierdo: u_k [0 , :]
 
-Borde superior: u_k [: , -1]
+  Borde derecho: u_k [-1 , :]
 
-Borde inferior: u_k [: , 0]
+  Borde superior: u_k [: , -1]
 
-Entonces, para condiciones de borde con valores constantes simplemente se iguala la variable que corresponde al borde a la temperatura que se indica para cada caso, por ejemplo, si la condicion inicial para el borde izquierdo es de 20° grados, entonces se define de la siguiente forma:
+  Borde inferior: u_k [: , 0]
 
-u_k [0 , :] = 20.
+  Entonces, para condiciones de borde con valores constantes simplemente se iguala la variable que corresponde al borde a la temperatura que se indica para cada caso, por ejemplo,
+  si la condicion inicial para el borde izquierdo es de 20° grados, entonces se define de la siguiente forma:
 
-Para los casos en que la condición de borde corresponde a un gradiente se considera la siguiente expresion:
+  u_k [0 , :] = 20.
 
-(f(x+h) - f(x) ) / dx = gradiente
+  Para los casos en que la condición de borde corresponde a un gradiente se considera la siguiente expresion:
 
-Lo que representado en el codigo se escribe de la siguiente forma:
+  (f(x+h) - f(x) ) / dx = gradiente
 
-(borde x - borde x en paso de tiempo anterior) dividido en dx = gradiente
+  Lo que representado en el codigo se escribe de la siguiente forma:
 
-Asi, si el borde derecho tiene como condicion inicial un gradiente de 20°, como codigo esto se ve como:
+  (borde x - borde x en paso de tiempo anterior) dividido en dx = gradiente
 
-(u_k [-1 , :] - u_k [-2 , :])/dx = -20.
+  Asi, si el borde derecho tiene como condicion inicial un gradiente de 20°, como codigo esto se ve como:
 
-Finalmente se despeja el borde derecho que se definió en un principio:
+  (u_k [-1 , :] - u_k [-2 , :])/dx = -20.
 
-u_k [-1 , :] = 20. * dx + u_k [-2 , :]
+  Finalmente se despeja el borde derecho que se definió en un principio:
+
+  u_k [-1 , :] = 20. * dx + u_k [-2 , :]
