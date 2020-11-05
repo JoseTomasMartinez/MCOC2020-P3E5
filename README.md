@@ -3,8 +3,11 @@
 Para cambiar las condiciones de borde se debe considerar que los lados se representan de la siguiente forma:
 
 Borde izquierdo: u_k [0 , :]
+
 Borde derecho: u_k [-1 , :]
+
 Borde superior: u_k [: , -1]
+
 Borde inferior: u_k [: , 0]
 
 Entonces, para condiciones de borde con valores constantes simplemente se iguala la variable que corresponde al borde a la temperatura que se indica para cada caso, por ejemplo, si la condicion inicial para el borde izquierdo es de 20° grados, entonces se define de la siguiente forma:
