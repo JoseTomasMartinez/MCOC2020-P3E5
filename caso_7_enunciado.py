@@ -100,6 +100,10 @@ u_N4 = np.zeros(np.int32(Days/dt))
 u_2N4 = np.zeros(np.int32(Days/dt))
 u_3N4 = np.zeros(np.int32(Days/dt))
 u_amb = np.zeros(np.int32(Days/dt))
+u_0c = np.zeros(np.int32(Days/dt))
+u_N4c = np.zeros(np.int32(Days/dt))
+u_2N4c = np.zeros(np.int32(Days/dt))
+u_3N4c = np.zeros(np.int32(Days/dt))
 
 def truncate(n,decimales=0):
     multiplier= 10**decimales
@@ -167,6 +171,13 @@ for k in range(np.int32(Days/dt)):
     u_3N4[k] = u_k[int(Nx/2),int(3*Ny/4)]           #3N/4, medio
     u_amb[k] = 10.*np.sin((2*np.pi/T)*dt*(k+1))
     
+    #Encuentro la temperatura en puntos interesantes
+
+    u_N4c[k]  = u_k[int(Nx/2),int(Ny/2)]             #N/4, medio
+    u_2N4c[k] = u_k[int(Nx/2),int(3*Ny/4)]           #2N/4, medio
+    u_3N4c[k] = u_k[int(3*Nx/4),int(3*Ny/4)]           #3N/4, medio
+    
+    
     #grafico en d_next
     if t> next_t:
         plt.figure(1)
@@ -180,12 +191,21 @@ for k in range(np.int32(Days/dt)):
 #plotear histria de temperatura en puntos interesantes
 plt.figure(2)
 plt.plot(range(np.int32(Days/dt)),u_amb, label="ambiente", linestyle=':',color='k')
-plt.plot(range(np.int32(Days/dt)),u_0, label="superficie")
 plt.plot(range(np.int32(Days/dt)),u_N4, label="N/4")
 plt.plot(range(np.int32(Days/dt)),u_2N4, label="2N/4")
 plt.plot(range(np.int32(Days/dt)),u_3N4, label="3N/4")
+plt.plot(range(np.int32(Days/dt)),u_0, label="superficie")
 plt.title("Evolucion de temperatura en puntos en caso 7 enunciado")
 plt.legend()
 plt.savefig("EvolucionT_caso_7_enunciado.png")
-plt.show()
 
+#plotear histria de temperatura en puntos pedidos
+plt.figure(3)
+plt.plot(range(np.int32(Days/dt)),u_amb, label="ambiente", linestyle=':',color='k')
+plt.plot(range(np.int32(Days/dt)),u_N4c, label="a/2 , b/2")
+plt.plot(range(np.int32(Days/dt)),u_2N4c, label="a/2 , 3b/4")
+plt.plot(range(np.int32(Days/dt)),u_3N4c, label="3a/4 , 3b/4")
+plt.title("Evolucion de temperatura en puntos en caso 7 puntos enunciado")
+plt.legend()
+plt.savefig("EvolucionT_caso_7_enunciado_puntos.png")
+plt.show()
